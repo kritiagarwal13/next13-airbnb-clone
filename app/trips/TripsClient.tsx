@@ -21,7 +21,7 @@ const TripsClient: React.FC<TripsClientProps> = ({
   currentUser,
 }) => {
   const router = useRouter();
-  const [deletingId, setDeletingId] = useState("");
+  const [deletingId, setDeletingId] = useState('');
 
   const onCancel = useCallback(
     (id: string) => {
@@ -37,7 +37,7 @@ const TripsClient: React.FC<TripsClientProps> = ({
           toast.error(error?.response?.data?.error);
         })
         .finally(() => {
-          setDeletingId("");
+          setDeletingId('');
         });
     },
     [router]
@@ -50,7 +50,7 @@ const TripsClient: React.FC<TripsClientProps> = ({
         subtitle="Where you've been and where you're goint"
       />
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
-        {reservations.map((reservation) => (
+        {reservations.map((reservation: any) => (
           <ListingCard
             key={reservation.id}
             data={reservation.listing}
@@ -58,13 +58,13 @@ const TripsClient: React.FC<TripsClientProps> = ({
             actionId={reservation.id}
             onAction={onCancel}
             disabled={deletingId === reservation.id}
-            actionLabel="Cancel Reservation"
+            actionLabel="Cancel reservation"
             currentUser={currentUser}
           />
         ))}
       </div>
     </Container>
   );
-};
+}
 
 export default TripsClient;
